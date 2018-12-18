@@ -1,0 +1,17 @@
+// Media queries
+
+@mixin media-query($break) {
+  $value: map-get($breakpoints, $break);
+  $sm: map-get($breakpoints, 'sm');
+
+  @if $value == $sm {
+    @media (max-width: $value) {
+      @content;
+    }
+  }
+  @else {
+    @media (min-width: $value) {
+      @content;
+    }
+  }
+}
