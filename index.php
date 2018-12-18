@@ -12,16 +12,28 @@ Text Domain: portfolio-image-gallery
 
 //namespace PortfolioImageGallery;
 
-define( 'PIG_TEXT_DOMAIN', 'portfolio-image-gallery');
-define( 'PIG_PLUGIN_DIR_PATH', plugin_dir_path( __file__ ) );
-define( 'PIG_PLUGIN_DIR_URL', plugin_dir_url( __file__ ) );
+define( 'VP_TEXT_DOMAIN', 'virtuoso-portfolio');
+define( 'VP_PLUGIN_DIR_PATH', plugin_dir_path( __file__ ) );
+define( 'VP_PLUGIN_DIR_URL', plugin_dir_url( __file__ ) );
 
-add_action('wp_enqueue_scripts','PIG_enqueue_assets');
-function PIG_enqueue_assets() {
-	wp_enqueue_style( PIG_TEXT_DOMAIN . '-styles', PIG_PLUGIN_DIR_URL . '/dist/styles/style.css', array() );
-	wp_enqueue_script( PIG_TEXT_DOMAIN . '-app', PIG_PLUGIN_DIR_URL . '/dist/js/app.js', array( 'jquery' ), true );
+add_action('wp_enqueue_scripts','VP_enqueue_assets');
+function VP_enqueue_assets() {
+	wp_enqueue_style( VP_TEXT_DOMAIN . '-styles', VP_PLUGIN_DIR_URL . '/dist/styles/style.css', array() );
+
+  wp_register_script( VP_TEXT_DOMAIN . '-app', VP_PLUGIN_DIR_URL . '/dist/js/app.js', array( 'jquery' ), true );
+
+  $localize = array(
+      'ajaxurl' => admin_url('admin-ajax.php'),
+    // Securing your WordPress plugin AJAX calls using nonces
+      'auth' => wp_create_nonce('_check__ajax_virtuoso')
+  );
+
+  wp_localize_script(VP_TEXT_DOMAIN . '-app', 'virtuoso_portfolio', $localize);
+	wp_enqueue_script(VP_TEXT_DOMAIN . '-app');
 
 }
 
-include( PIG_PLUGIN_DIR_PATH . "/admin/portfolio.php" );
-include( PIG_PLUGIN_DIR_PATH . "/views/portfolio.php" );
+//include( VP_PLUGIN_DIR_PATH . "/inc/wp-api.php" );
+include( VP_PLUGIN_DIR_PATH . "/admin/portfolio.php" );
+include( VP_PLUGIN_DIR_PATH . "/views/posts.php" );
+include( VP_PLUGIN_DIR_PATH . "/views/gallery.php" );
