@@ -82,7 +82,7 @@ function virtuoso_portfolio_image_gallery() {
                 <img class="single_slider_item" src="<?php echo $image_attributes[0]; ?>"/>
                 <div class="portfolio_header_wrap">
                   <a class="portfolio_name" href="<?php the_permalink(); ?>"><span><?php the_title(); ?></span></a>
-                  <span><?php echo get_field('category'); ?></span>
+                  <span class="portfolio_category"><?php echo get_field('category'); ?></span>
                 </div>
               </a>
             </li>
