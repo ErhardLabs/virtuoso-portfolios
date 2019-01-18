@@ -24,7 +24,7 @@ function virtuoso_portfolio_image_gallery() {
       </div>
     </div>
     <div class="virtuoso_gallery">
-      <div class="slider_wrap">
+      <div class="gallery_wrap">
       <?php virtuoso_portfolio_display_posts(); ?>
       </div>
     </div>

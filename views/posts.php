@@ -33,7 +33,7 @@ function virtuoso_portfolio_display_posts() {
   // WP_Query arguments
   $args = array(
     'post_type'       => array( 'portfolio' ),
-    'post_status'     => array( 'published' ),
+    'post_status'     => array( 'publish' ),
     'orderby'         => 'post_date',
     'order'           => 'DESC',
     'posts_per_page'  => $numberOfPosts,
@@ -45,8 +45,10 @@ function virtuoso_portfolio_display_posts() {
   // The Query
   $loop = new WP_Query( $args );
 
-  if ( $loop->have_posts() ) :
+  if ( $loop->have_posts() ) :?>
 
+        <div class="slider_wrap">
+       <?php
       // loop through posts
       while ( $loop->have_posts() ): $loop->the_post();
 
@@ -80,6 +82,7 @@ function virtuoso_portfolio_display_posts() {
 
   if (count($loop->posts) === $numberOfPosts) {
     ?>
+      </div> <!-- slider_wrap -->
     <a href="#/" class="show_more" data-offset="0" data-number-of-posts="<?php echo $numberOfPosts?>" data-taxonomy-slug="<?php echo $taxonomy?>">Show more <i class="ti-reload"></i></a>
     <?php
   }
