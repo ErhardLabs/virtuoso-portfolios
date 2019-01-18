@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+let mix = require( 'laravel-mix' );
 
 /*
  * Sets the development path to assets. By default, this is the `/resources`
@@ -6,17 +6,18 @@ let mix = require('laravel-mix');
  */
 const devPath = 'assets';
 
-mix.setPublicPath('dist');
+mix.setPublicPath( 'dist' );
+
 /*
  * Set Laravel Mix options.
  *
  * @link https://laravel.com/docs/5.6/mix#postcss
  * @link https://laravel.com/docs/5.6/mix#url-processing
  */
-mix.options( {
-  postCss        : [ require( 'postcss-preset-env' )() ],
-  processCssUrls : false
-} );
+mix.options({
+  postCss: [ require( 'postcss-preset-env' )() ],
+  processCssUrls: false
+});
 
 
 /*
@@ -42,7 +43,7 @@ mix.version();
  * @link https://laravel.com/docs/5.6/mix#working-with-scripts
  */
 
-mix.js(`${devPath}/js/app.js`, 'js');
+mix.js( `${devPath}/js/app.js`, 'js' );
 
 /*
  * Compile CSS. Mix supports Sass, Less, Stylus, and plain CSS, and has functions
@@ -55,9 +56,9 @@ mix.js(`${devPath}/js/app.js`, 'js');
 
 // Sass configuration.
 let sassConfig = {
-  outputStyle : 'expanded',
-  indentType  : 'tab',
-  indentWidth : 1
+  outputStyle: 'expanded',
+  indentType: 'tab',
+  indentWidth: 1
 };
 
-mix.sass( `${devPath}/sass/style.scss`, 'styles', sassConfig );
+mix.sass( `${devPath}/sass/portfolio-image-gallery.scss`, 'styles', sassConfig );
