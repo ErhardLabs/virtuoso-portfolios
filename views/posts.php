@@ -46,8 +46,6 @@ function virtuoso_portfolio_display_posts() {
   $loop = new WP_Query( $args );
 
   if ( $loop->have_posts() ) :?>
-
-        <div class="slider_wrap">
        <?php
       // loop through posts
       while ( $loop->have_posts() ): $loop->the_post();
@@ -60,13 +58,15 @@ function virtuoso_portfolio_display_posts() {
 
           ?>
           <li data-taxonomy-slug="<?php echo $taxonomies[0]->slug?>">
-            <a href="<?php the_permalink(); ?>" class="portfolio_image_link">
-              <img class="single_slider_item" src="<?php echo $image_attributes[0]; ?>"/>
-              <div class="portfolio_header_wrap">
-                <a class="portfolio_name" href="<?php the_permalink(); ?>"><span><?php the_title(); ?></span></a>
-                <span class="portfolio_category"><?php echo get_field('category'); ?></span>
+              <div class="item_wrap">
+                <a href="<?php the_permalink(); ?>" class="portfolio_image_link">
+                  <img class="single_slider_item" src="<?php echo $image_attributes[0]; ?>"/>
+                  <div class="portfolio_header_wrap">
+                    <a class="portfolio_name" href="<?php the_permalink(); ?>"><span><?php the_title(); ?></span></a>
+                    <span class="portfolio_category"><?php echo get_field('category'); ?></span>
+                  </div>
+                </a>
               </div>
-            </a>
           </li>
           <?php
 
@@ -82,8 +82,8 @@ function virtuoso_portfolio_display_posts() {
 
   if (count($loop->posts) === $numberOfPosts) {
     ?>
-      </div> <!-- slider_wrap -->
-    <a href="#/" class="show_more" data-offset="0" data-number-of-posts="<?php echo $numberOfPosts?>" data-taxonomy-slug="<?php echo $taxonomy?>">Show more <i class="ti-reload"></i></a>
+    </div> <!-- .gallery_wrap -->
+    <a href="#/" class="show_more" data-offset="0" data-number-of-posts="<?php echo $numberOfPosts?>" data-taxonomy-slug="<?php echo $taxonomy?>">Show more <i class="ti-reload icon"></i></a>
     <?php
   }
 

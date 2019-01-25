@@ -18,7 +18,7 @@ define( 'VP_PLUGIN_DIR_URL', plugin_dir_url( __file__ ) );
 
 add_action('wp_enqueue_scripts','VP_enqueue_assets');
 function VP_enqueue_assets() {
-	wp_enqueue_style( VP_TEXT_DOMAIN . '-styles', VP_PLUGIN_DIR_URL . '/dist/styles/style.css', array() );
+	wp_enqueue_style( VP_TEXT_DOMAIN . '-styles', VP_PLUGIN_DIR_URL . '/dist/styles/portfolio-image-gallery.css', array() );
 
   wp_register_script( VP_TEXT_DOMAIN . '-app', VP_PLUGIN_DIR_URL . '/dist/js/app.js', array( 'jquery' ), true );
 

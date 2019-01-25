@@ -20,7 +20,7 @@ function init_show_more_btn() {
     data.action = 'virtuoso_portfolio_display_posts';
 
     $.post(virtuoso_portfolio.ajaxurl, data, function(result) {
-      $('.virtuoso_gallery .slider_wrap').append(result);
+      $('.virtuoso_gallery .gallery_wrap').append(result);
       $('.show_more').attr('data-offset', newOffset);
       $('.show_more').remove();
       init_show_more_btn();
