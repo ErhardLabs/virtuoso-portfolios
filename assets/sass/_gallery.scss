@@ -158,6 +158,13 @@
       right: -90px;
     }
 
+    a {
+      &:hover {
+        color: #fff !important;
+      }
+
+    }
+
   }
 
   img.single_slider_item {

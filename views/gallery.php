@@ -11,7 +11,7 @@ function virtuoso_portfolio_image_gallery() {
 
 
   ?>
-  <div id="image_gallery" class="virtuoso_portfolio_image_gallery">
+  <div id="projects" class="virtuoso_portfolio_image_gallery">
     <div class="category_selector">
       <h2>Projects</h2>
       <div class="categories">
