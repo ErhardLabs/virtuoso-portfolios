@@ -83,7 +83,9 @@ function virtuoso_portfolio_display_posts() {
   if (count($loop->posts) === $numberOfPosts) {
     ?>
     </div> <!-- .gallery_wrap -->
-    <a href="#/" class="show_more" data-offset="0" data-number-of-posts="<?php echo $numberOfPosts?>" data-taxonomy-slug="<?php echo $taxonomy?>">Show more <i class="ti-reload icon"></i></a>
+    <div class="show_more">
+        <a href="#/" data-offset="0" data-number-of-posts="<?php echo $numberOfPosts?>" data-taxonomy-slug="<?php echo $taxonomy?>">Show more <i class="ti-reload icon"></i></a>
+    </div>
     <?php
   }
 

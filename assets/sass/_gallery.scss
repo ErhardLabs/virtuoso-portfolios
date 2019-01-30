@@ -202,14 +202,16 @@
   }
 
   .show_more {
-    margin-top: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-style: italic;
-    font-weight: bold;
-
+    a {
+      width: 100px;
+      margin: 80px auto 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-style: italic;
+      font-weight: bold;
+    }
     .icon {
       margin-top: 10px;
 
