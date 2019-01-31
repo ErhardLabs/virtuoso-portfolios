@@ -20,7 +20,7 @@ function virtuoso_portfolio_image_gallery() {
           echo "<a href='#/' data-taxonomy-slug='".$style->slug."'>" . $style->name . "</a>";
         }
         ?>
-        <a href="#/" data-taxonomy-slug="">All</a>
+        <a class="active" href="#/" data-taxonomy-slug="">All</a>
       </div>
     </div>
     <div class="virtuoso_gallery">

@@ -1,4 +1,5 @@
 $ = jQuery;
+
 // import display from './category-selection.es6';
 
 $( document ).ready( function() {
@@ -6,28 +7,28 @@ $( document ).ready( function() {
 });
 
 function initShowMoreBtn() {
-  $( '.show_more' ).unbind().click( function ( e ) {
+  $( '.show_more' ).unbind().click( function( e ) {
 
-    let index = $( '.show_more' ).attr('data-index');
+    let index = $( '.show_more' ).attr( 'data-index' );
     let allowShowMore = false;
     index++;
 
-    $( '.virtuoso_gallery .gallery_wrap .portfolio_group_wrap' ).each(function() {
-      if ( $( this ).data('index') == index ) {
+    $( '.virtuoso_gallery .gallery_wrap .portfolio_group_wrap' ).each( function() {
+      if ( $( this ).data( 'index' ) == index ) {
         $( this ).addClass( 'visible' );
         $( '.show_more' ).attr( 'data-index', index );
       }
 
-      let futureIndex = index+1;
+      let futureIndex = index + 1;
 
-      if ( $( this ).data('index') == futureIndex ) {
+      if ( $( this ).data( 'index' ) == futureIndex ) {
         allowShowMore = true;
       }
 
     });
 
-    if ( !allowShowMore ) {
-      $( '.show_more' ).removeClass('visible');
+    if ( ! allowShowMore ) {
+      $( '.show_more' ).removeClass( 'visible' );
     }
 
   });
@@ -49,10 +50,10 @@ function fetchPortfolioItems() {
     let x = 0;
     let groupedPortfolioItems = [];
 
-    filteredResults.parsedArrayResult.forEach(portfolio => {
+    filteredResults.parsedArrayResult.forEach( portfolio => {
 
       // MAKE GROUPINGS OF 6 PORTFOLIO ITEMS
-      if ( i % 6 === 0 ) {
+      if ( 0 === i % 6 ) {
         x++;
         groupedPortfolioItems[x] = [];
         groupedPortfolioItems[x].push( portfolio );
@@ -65,29 +66,29 @@ function fetchPortfolioItems() {
     });
 
 
-    groupedPortfolioItems.splice(0, 1);
+    groupedPortfolioItems.splice( 0, 1 );
 
     $( '.virtuoso_gallery .gallery_wrap .portfolio_group_wrap' ).fadeOut();
     $( '.virtuoso_gallery .gallery_wrap .portfolio_group_wrap' ).remove();
 
     i = 0;
     let groupHtml = [];
-    groupedPortfolioItems.forEach(group => {
-      groupHtml[i] = "<div class='portfolio_group_wrap' data-index='"+i+"'>";
+    groupedPortfolioItems.forEach( group => {
+      groupHtml[i] = '<div class=\'portfolio_group_wrap\' data-index=\'' + i + '\'>';
       groupHtml[i] += group.join( '' );
-      groupHtml[i] += "</div>";
+      groupHtml[i] += '</div>';
       i++;
     });
 
 
-    $( '.virtuoso_gallery .gallery_wrap' ).html(groupHtml.join( '' ));
+    $( '.virtuoso_gallery .gallery_wrap' ).html( groupHtml.join( '' ) );
 
     if ( 1 < groupHtml.length ) {
 
-      $( '.virtuoso_gallery .gallery_wrap .portfolio_group_wrap' ).each(function() {
-        if ( $( this ).data('index') == 0 ) {
+      $( '.virtuoso_gallery .gallery_wrap .portfolio_group_wrap' ).each( function() {
+        if ( 0 == $( this ).data( 'index' ) ) {
           $( this ).addClass( 'visible' );
-          $( '.show_more' ).attr('data-index', 0);
+          $( '.show_more' ).attr( 'data-index', 0 );
         } else {
           $( this ).removeClass( 'visible' );
         }
@@ -108,8 +109,6 @@ function fetchPortfolioItems() {
 
 
   });
-
-
 
 
 }
