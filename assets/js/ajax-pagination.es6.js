@@ -14,7 +14,7 @@ function initShowMoreBtn() {
 
     $( '.virtuoso_gallery .gallery_wrap .portfolio_group_wrap' ).each(function() {
       if ( $( this ).data('index') == index ) {
-        $( this ).fadeIn( 1000 );
+        $( this ).addClass( 'visible' );
         $( '.show_more' ).attr( 'data-index', index );
       }
 
@@ -27,7 +27,7 @@ function initShowMoreBtn() {
     });
 
     if ( !allowShowMore ) {
-      $( '.show_more' ).hide();
+      $( '.show_more' ).removeClass('visible');
     }
 
   });
@@ -86,21 +86,21 @@ function fetchPortfolioItems() {
 
       $( '.virtuoso_gallery .gallery_wrap .portfolio_group_wrap' ).each(function() {
         if ( $( this ).data('index') == 0 ) {
-          $( this ).fadeIn( 1000 );
+          $( this ).addClass( 'visible' );
           $( '.show_more' ).attr('data-index', 0);
         } else {
-          $( this ).hide();
+          $( this )removeClass( 'visible' );
         }
       });
 
-      $( '.show_more' ).fadeIn();
+      $( '.show_more' ).addClass( 'visible' );
       initShowMoreBtn();
 
     } else {
 
       // DON'T SHOW "SHOW MORE" BUTTON BECAUSE ALL RESULTS ARE LOADED
-      $( '.virtuoso_gallery .gallery_wrap .portfolio_group_wrap' ).fadeIn( 1000 );
-      $( '.show_more' ).hide();
+      $( '.virtuoso_gallery .gallery_wrap .portfolio_group_wrap' ).addClass( 'visible' );
+      $( '.show_more' )removeClass( 'visible' );
 
     }
 
