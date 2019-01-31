@@ -1,26 +1,41 @@
 $ = jQuery;
+import ajax from './ajax-pagination.es6.js';
+
 $( document ).ready( function() {
 
   $( '.category_selector .categories a' ).unbind().click( function( e ) {
 
     e.preventDefault();
+    $( '.category_selector .categories a' ).removeClass('active');
+    $( this ).addClass( 'active' );
+
     let taxonomy = $( this ).attr( 'data-taxonomy-slug' );
-    $( '.show_more' ).attr( 'data-taxonomy-slug', taxonomy );
+    $( '#projects' ).attr( 'data-taxonomy-slug', taxonomy );
 
-    $( '.virtuoso_gallery .gallery_wrap li' ).each( function() {
-
-      if ( '' === taxonomy ) {
-        $( this ).fadeIn();
-      } else {
-        if ( $( this ).attr( 'data-taxonomy-slug' ) === taxonomy ) {
-          $( this ).fadeIn();
-        } else {
-          $( this ).fadeOut();
-        }
-      }
-
-    });
+    ajax.fetchPortfolioItems();
 
   });
 
 });
+
+// function togglePortfolios() {
+//
+//   let taxonomy = $( '#projects' ).attr( 'data-taxonomy-slug' );
+//
+//   // DISPLAY APPROPRIATE PORTFOLIO ITEMS
+//   $( '.virtuoso_gallery .gallery_wrap .portfolio_group_wrap li' ).each( function() {
+//
+//     if ( 'undefined' === typeof taxonomy ) {
+//       $( this ).fadeIn( 'slow' );
+//     } else {
+//       if ( $( this ).attr( 'data-taxonomy-slug' ) === taxonomy ) {
+//         $( this ).fadeIn( 'slow' );
+//       } else {
+//         $( this ).fadeOut( 'fast' );
+//       }
+//     }
+//
+//   });
+// }
+
+// export default {togglePortfolios};

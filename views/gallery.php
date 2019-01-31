@@ -25,7 +25,12 @@ function virtuoso_portfolio_image_gallery() {
     </div>
     <div class="virtuoso_gallery">
       <div class="gallery_wrap">
-        <?php virtuoso_portfolio_display_posts(); ?>
+        <!--   PORTFOLIOS CALLED THROUGH AJAX     -->
+        <?php //virtuoso_portfolio_display_posts(); ?>
+      </div> <!-- .gallery_wrap -->
+      <div class="show_more" data-index="0">
+        <a>Show more <i class="ti-reload icon"></i></a>
+      </div>
        <!-- Closing tag for .gallery_wrap needs to close before the show more button in posts.php-->
   </div>
   <?php

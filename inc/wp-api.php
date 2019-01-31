@@ -36,6 +36,8 @@ function get_content_by_slug(WP_REST_Request $request)
   } else {
     $response = new WP_Error( 'post_empty', 'Post is empty', array( 'status' => 404 ) );
   }
-  return $response;
+
+  wp_send_json(['response' => $response]);
+  exit;
 
 }

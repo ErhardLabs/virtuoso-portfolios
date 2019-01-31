@@ -3,12 +3,11 @@
 add_action( 'wp_ajax_virtuoso_portfolio_display_posts', 'virtuoso_portfolio_display_posts' );
 add_action( 'wp_ajax_nopriv_virtuoso_portfolio_display_posts', 'virtuoso_portfolio_display_posts' );
 
-
 function virtuoso_portfolio_display_posts() {
 
-  $offset = (count($_POST) > 0) ? (int) $_POST['offset'] : 0; // skip previous pagination
-  $taxonomy = (count($_POST) > 0) ? (int) $_POST['taxonomy'] : ''; // for single term pagination
-  $numberOfPosts = (count($_POST) > 0) ? (int) $_POST['numberOfPosts'] : 3; // default number of posts or grab from ajax
+//  $offset = (count($_POST) > 0) ? (int) $_POST['offset'] : 0; // skip previous pagination
+  $taxonomy = ($_POST['taxonomy'] !== null) ? $_POST['taxonomy'] : ''; // for single term pagination
+  $numberOfPosts = (count($_POST) > 0) ? (int) $_POST['numberOfPosts'] : 6; // default number of posts or grab from ajax
 
   if ($taxonomy !== '') {
 
@@ -29,17 +28,22 @@ function virtuoso_portfolio_display_posts() {
 
   }
 
-
   // WP_Query arguments
   $args = array(
     'post_type'       => array( 'portfolio' ),
     'post_status'     => array( 'publish' ),
     'orderby'         => 'post_date',
     'order'           => 'DESC',
-    'posts_per_page'  => $numberOfPosts,
-    'numberposts'     => $numberOfPosts,
-    'offset'          => $offset,
-    'tax_query'       => array($taxonomies)
+    'posts_per_page'  => -1, // show all posts
+//    'numberposts'     => $numberOfPosts,
+//    'offset'          => $offset,
+    'tax_query' => array(
+        array(
+            'taxonomy' => 'style',
+            'field' => 'slug',
+            'terms' => $taxonomies
+        )
+    )
   );
 
   // The Query
@@ -80,14 +84,15 @@ function virtuoso_portfolio_display_posts() {
   wp_reset_query();
   wp_reset_postdata();
 
-  if (count($loop->posts) === $numberOfPosts) {
+//  if (count($loop->posts) === $numberOfPosts) {
     ?>
-    </div> <!-- .gallery_wrap -->
-    <div class="show_more">
-        <a href="#/" data-offset="0" data-number-of-posts="<?php echo $numberOfPosts?>" data-taxonomy-slug="<?php echo $taxonomy?>">Show more <i class="ti-reload icon"></i></a>
-    </div>
+<!--    </div> <!-- .gallery_wrap -->-->
+<!--    <div class="show_more">-->
+<!--      <a>Show more <i class="ti-reload icon"></i></a>-->
+<!--<!--        <a href="#/" data-offset="0" data-number-of-posts="-->--><?php ////echo $numberOfPosts?><!--<!--" data-taxonomy-slug="-->--><?php ////echo $taxonomy?><!--<!--">Show more <i class="ti-reload icon"></i></a>-->-->
+<!--    </div>-->
     <?php
-  }
+//  }
 
   if ($offset > 0) {
     exit; // avoid trailing 0 from json
