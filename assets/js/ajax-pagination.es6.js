@@ -89,7 +89,7 @@ function fetchPortfolioItems() {
           $( this ).addClass( 'visible' );
           $( '.show_more' ).attr('data-index', 0);
         } else {
-          $( this )removeClass( 'visible' );
+          $( this ).removeClass( 'visible' );
         }
       });
 
@@ -100,7 +100,7 @@ function fetchPortfolioItems() {
 
       // DON'T SHOW "SHOW MORE" BUTTON BECAUSE ALL RESULTS ARE LOADED
       $( '.virtuoso_gallery .gallery_wrap .portfolio_group_wrap' ).addClass( 'visible' );
-      $( '.show_more' )removeClass( 'visible' );
+      $( '.show_more' ).removeClass( 'visible' );
 
     }
 
