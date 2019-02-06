@@ -7,20 +7,42 @@ function virtuoso_portfolio_image_gallery() {
       'taxonomy' => 'style',
       'hide_empty' => false,  ) );
 
-//  print_r($loop);
+  $options = get_field('options');
+  if ($options) {
+    $title = $options['section_title'];
+    $reverseStylesDisplay = $options['reverse_stylescategories_display'];
+    $masonryLayout = $options['masonry_layout'];
+  } else {
+    $title = 'Portfolio';
+    $reverseStylesDisplay = false;
+    $masonryLayout = false;
+  }
 
+  if ($reverseStylesDisplay) {
+    array_reverse($styles);
+  }
 
   ?>
   <div id="projects" class="virtuoso_portfolio_image_gallery">
     <div class="category_selector">
-      <h2>Projects</h2>
+      <h2><?php echo $title ?></h2>
       <div class="categories">
         <?php
-        foreach ($styles as $style) {
-          echo "<a href='#/' data-taxonomy-slug='".$style->slug."'>" . $style->name . "</a>";
+        if ($reverseStylesDisplay) {
+          ?><a class="active" href="#/" data-taxonomy-slug="">All</a><?php
+          foreach ($styles as $style) {
+            echo "<a href='#/' data-taxonomy-slug='".$style->slug."'>" . $style->name . "</a>";
+          }
+        } else {
+          foreach ($styles as $style) {
+            echo "<a href='#/' data-taxonomy-slug='".$style->slug."'>" . $style->name . "</a>";
+          }
+          ?>
+          <a class="active" href="#/" data-taxonomy-slug="">All</a>
+          <?php
         }
         ?>
-        <a class="active" href="#/" data-taxonomy-slug="">All</a>
+
       </div>
     </div>
     <div class="virtuoso_gallery">
