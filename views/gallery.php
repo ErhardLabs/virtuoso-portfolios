@@ -11,11 +11,11 @@ function virtuoso_portfolio_image_gallery() {
   if ($options) {
     $title = $options['section_title'];
     $reverseStylesDisplay = $options['reverse_stylescategories_display'];
-    $masonryLayout = $options['masonry_layout'];
+    $masonryLayout = ($options['masonry_layout']) ? 1 : 0;
   } else {
     $title = 'Portfolio';
     $reverseStylesDisplay = false;
-    $masonryLayout = false;
+    $masonryLayout = 0;
   }
 
   if ($reverseStylesDisplay) {
@@ -23,7 +23,7 @@ function virtuoso_portfolio_image_gallery() {
   }
 
   ?>
-  <div id="projects" class="virtuoso_portfolio_image_gallery">
+  <div id="projects" class="virtuoso_portfolio_image_gallery" data-masonry="<?php echo $masonryLayout ?>">
     <div class="category_selector">
       <h2><?php echo $title ?></h2>
       <div class="categories">
