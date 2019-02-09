@@ -86,16 +86,16 @@ function virtuoso_portfolio_display_posts() {
 
 //  if (count($loop->posts) === $numberOfPosts) {
     ?>
-<!--    </div> <!-- .gallery_wrap -->-->
+<!--    </div> .gallery_wrap -->
 <!--    <div class="show_more">-->
 <!--      <a>Show more <i class="ti-reload icon"></i></a>-->
-<!--<!--        <a href="#/" data-offset="0" data-number-of-posts="-->--><?php ////echo $numberOfPosts?><!--<!--" data-taxonomy-slug="-->--><?php ////echo $taxonomy?><!--<!--">Show more <i class="ti-reload icon"></i></a>-->-->
+<!--      <a href="#/" data-offset="0" data-number-of-posts="--><?php ////echo $numberOfPosts?><!--" data-taxonomy-slug="--><?php ////echo $taxonomy?><!--">Show more <i class="ti-reload icon"></i></a>-->
 <!--    </div>-->
     <?php
 //  }
 
-  if ($offset > 0) {
-    exit; // avoid trailing 0 from json
-  }
+//  if ($offset > 0) {
+//    exit; // avoid trailing 0 from json
+//  }
 
 }

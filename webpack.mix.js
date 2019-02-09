@@ -61,4 +61,4 @@ let sassConfig = {
   indentWidth: 1
 };
 
-mix.sass( `${devPath}/sass/portfolio-image-gallery.scss`, 'styles', sassConfig );
+mix.sass( `${devPath}/sass/virtuoso-portfolio.scss`, 'styles', sassConfig );
