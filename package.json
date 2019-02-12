@@ -44,5 +44,8 @@
     "stylelint": "^9.10.0",
     "stylelint-config-wordpress": "^13.1.0",
     "vue-template-compiler": "^2.5.22"
+  },
+  "dependencies": {
+    "masonry-layout": "^4.2.2"
   }
 }

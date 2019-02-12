@@ -12,43 +12,75 @@ function virtuoso_portfolio_image_gallery() {
     $title = $options['section_title'];
     $reverseStylesDisplay = $options['reverse_stylescategories_display'];
     $masonryLayout = ($options['masonry_layout']) ? 1 : 0;
+    $showAllCategorySelector = $options['show_all_category_selector'];
   } else {
     $title = 'Portfolio';
     $reverseStylesDisplay = false;
     $masonryLayout = 0;
+    $showAllCategorySelector = true;
   }
 
   if ($reverseStylesDisplay) {
     array_reverse($styles);
   }
 
+  if ($showAllCategorySelector) {
+    $firstCategory = '';
+  } else {
+    $firstCategory = $styles[0]->slug;
+  }
+
+  if ($masonryLayout) {
+    $portfolios = array();
+
+    foreach( $styles as $style ) {
+
+      $portfolio = get_posts(array(
+          'post_type' => 'portfolio',
+          'numberposts' => -1,
+          'tax_query' => array(
+              array(
+                  'taxonomy' => 'style',
+                  'field' => 'slug',
+                  'terms' => $style->slug
+              )
+          )
+      ));
+
+      $style->attached_portfolio_id = $portfolio[0]->ID;
+    }
+  }
+
+
+
   ?>
-  <div id="projects" class="virtuoso_portfolio_image_gallery" data-masonry="<?php echo $masonryLayout ?>">
+  <div id="projects" class="virtuoso_portfolio_image_gallery" data-taxonomy-slug="<?php echo $firstCategory?>" data-masonry="<?php echo $masonryLayout ?>" data-all-category-selector="<?php ($showAllCategorySelector) ? '1' : '0'?>" data-offset="0">
     <div class="category_selector">
       <h2><?php echo $title ?></h2>
       <div class="categories">
         <?php
         if ($reverseStylesDisplay) {
-          ?><a class="active" href="#/" data-taxonomy-slug="">All</a><?php
+          if ($showAllCategorySelector) {
+            ?><a class="active" href="#/" data-taxonomy-slug="">All</a><?php
+          }
           foreach ($styles as $style) {
-            echo "<a href='#/' data-taxonomy-slug='".$style->slug."'>" . $style->name . "</a>";
+            echo "<a href='#/' data-taxonomy-slug='".$style->slug."' data-id='".$style->attached_portfolio_id."'>" . $style->name . "</a>";
           }
         } else {
           foreach ($styles as $style) {
-            echo "<a href='#/' data-taxonomy-slug='".$style->slug."'>" . $style->name . "</a>";
+            echo "<a href='#/' data-taxonomy-slug='".$style->slug."' data-id='".$style->attached_portfolio_id."'>" . $style->name . "</a>";
           }
-          ?>
-          <a class="active" href="#/" data-taxonomy-slug="">All</a>
-          <?php
+          if ($showAllCategorySelector) {
+            ?><a class="active" href="#/" data-taxonomy-slug="">All</a><?php
+          }
         }
         ?>
 
       </div>
     </div>
     <div class="virtuoso_gallery">
-      <div class="gallery_wrap">
+      <div class="gallery_wrap <?php if ($masonryLayout) { echo 'grid'; }?>">
         <!--   PORTFOLIOS CALLED THROUGH AJAX     -->
-        <?php //virtuoso_portfolio_display_posts(); ?>
       </div> <!-- .gallery_wrap -->
       <div class="show_more" data-index="0">
         <a>Show more <i class="ti-reload icon"></i></a>

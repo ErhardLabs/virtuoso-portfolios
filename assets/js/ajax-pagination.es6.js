@@ -3,7 +3,16 @@ $ = jQuery;
 // import display from './category-selection.es6';
 
 $( document ).ready( function() {
-  fetchPortfolioItems();
+
+  $( '.category_selector .categories a' ).first().addClass( 'active' );
+  let masonryLayout = parseInt( $( '#projects' ).attr( 'data-masonry' ) );
+
+  if ( masonryLayout ) {
+    fetchPortfolioGalleryItems();
+  } else {
+    fetchPortfolioItems();
+  }
+
 });
 
 function initShowMoreBtn() {
@@ -32,6 +41,50 @@ function initShowMoreBtn() {
     }
 
   });
+}
+
+function fetchPortfolioGalleryItems() {
+
+  let data = {};
+  data.portfolioID = $( '.category_selector .categories a.active' ).attr( 'data-id' );
+  data.offset = parseInt( $( '#projects' ).attr( 'data-offset' ) );
+  data.action = 'virtuoso_portfolio_display_gallery_items';
+
+  $.post( virtuoso_portfolio.ajaxurl, data, function( result ) {
+
+    if ( result.success ) {
+
+      // console.log( result.data );
+
+      let output = '';
+      let i = 0;
+
+      result.data.forEach( imageData => {
+
+        // if ( 0 === i ) {
+        //   output += '<div class="grid-sizer">';
+        // } else {
+        //   output += '<div class="grid-item">';
+        // }
+
+        output += '<div class="grid-item">';
+          output += '<img src="' + imageData.url + '"/>';
+          output += '<span>' + imageData.caption + '</span>';
+        output += '</div>';
+
+      });
+
+      $( '.gallery_wrap' ).append( output );
+      $( '.gallery_wrap.grid .grid-item' ).addClass( 'visible' );
+
+      $( '#projects' ).attr( 'data-offset', data.offset + 6 );
+
+    } else {
+      console.log( result.data );
+    }
+
+  });
+
 }
 
 function fetchPortfolioItems() {
@@ -124,4 +177,4 @@ function removeTrailingZero( result ) {
   return filteredResults;
 }
 
-export default {fetchPortfolioItems, initShowMoreBtn};
+export default {fetchPortfolioItems, initShowMoreBtn, fetchPortfolioGalleryItems};

@@ -6,13 +6,27 @@ $( document ).ready( function() {
   $( '.category_selector .categories a' ).unbind().click( function( e ) {
 
     e.preventDefault();
-    $( '.category_selector .categories a' ).removeClass('active');
+    $( '.category_selector .categories a' ).removeClass( 'active' );
     $( this ).addClass( 'active' );
 
+
     let taxonomy = $( this ).attr( 'data-taxonomy-slug' );
+
+    if ( taxonomy !== $( '#projects' ).attr( 'data-taxonomy-slug' ) ) {
+      $( '#projects' ).attr( 'data-offset', 0 );
+      $( '.gallery_wrap.grid .grid-item' ).removeClass( 'visible' );
+      $( '.gallery_wrap.grid' ).html( '' ); // empty gallery
+    }
+
     $( '#projects' ).attr( 'data-taxonomy-slug', taxonomy );
 
-    ajax.fetchPortfolioItems();
+    let masonryLayout = parseInt( $( '#projects' ).attr( 'data-masonry' ) );
+
+    if ( masonryLayout ) {
+      ajax.fetchPortfolioGalleryItems();
+    } else {
+      ajax.fetchPortfolioItems();
+    }
 
   });
 

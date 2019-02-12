@@ -37,4 +37,5 @@ function VP_enqueue_assets() {
 include( VP_PLUGIN_DIR_PATH . "/admin/portfolio.php" );
 include( VP_PLUGIN_DIR_PATH . "/views/posts.php" );
 include( VP_PLUGIN_DIR_PATH . "/views/gallery.php" );
+include( VP_PLUGIN_DIR_PATH . "/views/portfolio-gallery-items.php" );
 include( VP_PLUGIN_DIR_PATH . "/views/block-portfolio.php" );
