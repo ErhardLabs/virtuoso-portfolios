@@ -25,4 +25,13 @@
       max-width: 100%;
     }
   }
+
+  .show_more {
+
+    &.visible {
+      width: 100%;
+      clear: both;
+    }
+
+  }
 }

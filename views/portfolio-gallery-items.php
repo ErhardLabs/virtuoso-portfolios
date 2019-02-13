@@ -7,7 +7,8 @@ function virtuoso_portfolio_display_gallery_items() {
 
   $portfolioID = ($_POST['portfolioID'] !== null) ? $_POST['portfolioID'] : ''; // for single term pagination
   $offset = ($_POST['offset'] !== null) ? $_POST['offset'] : 0; // for single term pagination
-  define('DEBUG', FALSE);
+
+  define('DEBUG', false);
 
   if (DEBUG) {
     print_r($offset);
@@ -38,7 +39,7 @@ function virtuoso_portfolio_display_gallery_items() {
       }
 
       if ($offset > 0) {
-        $processedResult = array_splice($processedResult, 0, $offset); // remove items from beginning up until the offset number
+        array_splice($processedResult, 0, $offset); // remove items from beginning up until the offset number
 
         if (DEBUG) {
           echo '<br>After first splice:<br>';
@@ -47,17 +48,16 @@ function virtuoso_portfolio_display_gallery_items() {
 
       }
 
-      if (0 === $offset) {
-        $length = 6;
-      } else {
-        $length = 6+$offset;
-      }
-
-      $processedResult = array_splice($processedResult, 0, $length); // remove everything after the offset once the first values have been removed
+      $remainingImages = array_splice($processedResult, 6); // remove everything after the offset once the first values have been removed
 
       if (DEBUG) {
         echo '<br>After last splice:<br>';
         print_r($processedResult);
+      }
+
+      if (DEBUG) {
+        echo '<br>Remaining images:<br>';
+        print_r(count($remainingImages));
       }
 
       foreach( $processedResult as $imageID ) {
@@ -72,7 +72,8 @@ function virtuoso_portfolio_display_gallery_items() {
       throw new Exception('No gallery images found.');
     }
 
-    wp_send_json_success($orderedImages);
+    wp_send_json(['success' => TRUE, 'data' => $orderedImages, 'remainingImages' => count($remainingImages)]);
+//    wp_send_json($orderedImages, $imagesLeft);
 
 
   } catch (Exception $e) {

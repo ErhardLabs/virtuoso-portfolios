@@ -16,11 +16,13 @@ $( document ).ready( function() {
       $( '#projects' ).attr( 'data-offset', 0 );
       $( '.gallery_wrap.grid .grid-item' ).removeClass( 'visible' );
       $( '.gallery_wrap.grid' ).html( '' ); // empty gallery
+    } else {
+      return;
     }
 
     $( '#projects' ).attr( 'data-taxonomy-slug', taxonomy );
 
-    let masonryLayout = parseInt( $( '#projects' ).attr( 'data-masonry' ) );
+    let masonryLayout = $( '#projects' ).hasClass( 'masonry' );
 
     if ( masonryLayout ) {
       ajax.fetchPortfolioGalleryItems();

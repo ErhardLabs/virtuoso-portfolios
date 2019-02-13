@@ -22,22 +22,29 @@ function initShowMoreBtn() {
     let allowShowMore = false;
     index++;
 
-    $( '.virtuoso_gallery .gallery_wrap .portfolio_group_wrap' ).each( function() {
-      if ( $( this ).data( 'index' ) == index ) {
-        $( this ).addClass( 'visible' );
-        $( '.show_more' ).attr( 'data-index', index );
+    let masonryLayout = $( '#projects' ).hasClass( 'masonry' );
+
+    if ( masonryLayout ) {
+      fetchPortfolioGalleryItems();
+    } else {
+
+      $( '.virtuoso_gallery .gallery_wrap .portfolio_group_wrap' ).each( function() {
+        if ( $( this ).data( 'index' ) == index ) {
+          $( this ).addClass( 'visible' );
+          $( '.show_more' ).attr( 'data-index', index );
+        }
+
+        let futureIndex = index + 1;
+
+        if ( $( this ).data( 'index' ) == futureIndex ) {
+          allowShowMore = true;
+        }
+
+      });
+
+      if ( ! allowShowMore ) {
+        $( '.show_more' ).removeClass( 'visible' );
       }
-
-      let futureIndex = index + 1;
-
-      if ( $( this ).data( 'index' ) == futureIndex ) {
-        allowShowMore = true;
-      }
-
-    });
-
-    if ( ! allowShowMore ) {
-      $( '.show_more' ).removeClass( 'visible' );
     }
 
   });
@@ -46,7 +53,7 @@ function initShowMoreBtn() {
 function fetchPortfolioGalleryItems() {
 
   let data = {};
-  data.portfolioID = $( '.category_selector .categories a.active' ).attr( 'data-id' );
+  data.portfolioID = parseInt( $( '.category_selector .categories a.active' ).attr( 'data-id' ) );
   data.offset = parseInt( $( '#projects' ).attr( 'data-offset' ) );
   data.action = 'virtuoso_portfolio_display_gallery_items';
 
@@ -78,6 +85,14 @@ function fetchPortfolioGalleryItems() {
       $( '.gallery_wrap.grid .grid-item' ).addClass( 'visible' );
 
       $( '#projects' ).attr( 'data-offset', data.offset + 6 );
+
+      if ( result.remainingImages > 0 ) {
+        $( '.show_more' ).addClass( 'visible' );
+        initShowMoreBtn();
+      } else {
+        $( '.show_more' ).removeClass( 'visible' );
+      }
+
 
     } else {
       console.log( result.data );
