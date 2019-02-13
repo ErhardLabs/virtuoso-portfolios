@@ -20,7 +20,7 @@ add_action('wp_enqueue_scripts','VP_enqueue_assets');
 function VP_enqueue_assets() {
 	wp_enqueue_style( VP_TEXT_DOMAIN . '-styles', VP_PLUGIN_DIR_URL . 'dist/styles/virtuoso-portfolio.css', array() );
 
-  wp_register_script( VP_TEXT_DOMAIN . '-app', VP_PLUGIN_DIR_URL . 'dist/js/app.js', array( 'jquery' ), true );
+  wp_register_script( VP_TEXT_DOMAIN . '-app', VP_PLUGIN_DIR_URL . 'dist/js/app.js', array( 'jquery' ), '' , true );
 
   $localize = array(
       'ajaxurl' => admin_url('admin-ajax.php'),

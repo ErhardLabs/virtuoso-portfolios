@@ -1,0 +1,28 @@
+.virtuoso_portfolio_image_gallery.masonry {
+  .gallery_wrap {
+    margin: 0;
+
+    /* clear fix */
+    &.grid:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    /* ---- .grid-item ---- */
+
+    .grid-sizer,
+    .grid-item {
+      width: 50%;
+    }
+
+    .grid-item {
+      float: left;
+    }
+
+    .grid-item img {
+      display: block;
+      max-width: 100%;
+    }
+  }
+}

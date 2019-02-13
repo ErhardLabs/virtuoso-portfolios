@@ -5,7 +5,7 @@ $ = jQuery;
 $( document ).ready( function() {
 
   $( '.category_selector .categories a' ).first().addClass( 'active' );
-  let masonryLayout = parseInt( $( '#projects' ).attr( 'data-masonry' ) );
+  let masonryLayout = parseInt( $( '.virtuoso_gallery .gallery_wrap' ).attr( 'data-masonry' ) );
 
   if ( masonryLayout ) {
     fetchPortfolioGalleryItems();

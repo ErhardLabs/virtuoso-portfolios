@@ -46,6 +46,7 @@
     "vue-template-compiler": "^2.5.22"
   },
   "dependencies": {
+    "imagesloaded": "^4.1.4",
     "masonry-layout": "^4.2.2"
   }
 }

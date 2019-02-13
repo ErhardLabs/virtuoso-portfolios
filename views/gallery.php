@@ -54,7 +54,7 @@ function virtuoso_portfolio_image_gallery() {
 
 
   ?>
-  <div id="projects" class="virtuoso_portfolio_image_gallery" data-taxonomy-slug="<?php echo $firstCategory?>" data-masonry="<?php echo $masonryLayout ?>" data-all-category-selector="<?php ($showAllCategorySelector) ? '1' : '0'?>" data-offset="0">
+  <div id="projects" class="virtuoso_portfolio_image_gallery <?php if ($masonryLayout) { echo 'masonry'; }?>" data-taxonomy-slug="<?php echo $firstCategory?>" data-all-category-selector="<?php ($showAllCategorySelector) ? '1' : '0'?>" data-offset="0">
     <div class="category_selector">
       <h2><?php echo $title ?></h2>
       <div class="categories">
@@ -79,14 +79,17 @@ function virtuoso_portfolio_image_gallery() {
       </div>
     </div>
     <div class="virtuoso_gallery">
-      <div class="gallery_wrap <?php if ($masonryLayout) { echo 'grid'; }?>">
+      <div class="gallery_wrap <?php if ($masonryLayout) { echo 'grid'; }?>" data-masonry="<?php echo $masonryLayout ?>">
+	      <?php if ($masonryLayout) { echo '<div class="grid-sizer"></div>'; }?>
         <!--   PORTFOLIOS CALLED THROUGH AJAX     -->
-      </div> <!-- .gallery_wrap -->
+      </div>
+    </div> <!-- .gallery_wrap -->
       <div class="show_more" data-index="0">
         <a>Show more <i class="ti-reload icon"></i></a>
       </div>
        <!-- Closing tag for .gallery_wrap needs to close before the show more button in posts.php-->
   </div>
+<!--  </div>-->
   <?php
 
 }
