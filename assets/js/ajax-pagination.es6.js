@@ -1,3 +1,6 @@
+import Masonry from "masonry-layout";
+import imagesLoaded from "imagesloaded";
+
 $ = jQuery;
 
 // import display from './category-selection.es6';
@@ -66,17 +69,20 @@ function fetchPortfolioGalleryItems() {
       let output = '';
       let i = 0;
 
-      result.data.forEach( imageData => {
+      output += '<div class="grid-sizer"></div>';
+      output += '<div class="gutter-sizer"></div>';
 
-        // if ( 0 === i ) {
-        //   output += '<div class="grid-sizer">';
-        // } else {
-        //   output += '<div class="grid-item">';
-        // }
+      result.data.forEach( imageData => {
 
         output += '<div class="grid-item">';
           output += '<img src="' + imageData.url + '"/>';
-          output += '<span>' + imageData.caption + '</span>';
+
+          if (imageData.caption !== ''){
+            output += '<div class="grid-item-content">';
+              output += '<span>' + imageData.caption + '</span>';
+            output += '</div>';
+          }
+
         output += '</div>';
 
       });
@@ -93,6 +99,24 @@ function fetchPortfolioGalleryItems() {
         $( '.show_more' ).removeClass( 'visible' );
       }
 
+      let grid = document.querySelector('.gallery_wrap.grid');
+      let msnry = new Masonry('.gallery_wrap.grid', {
+        itemSelector: '.grid-item',
+        columnWidth: '.grid-sizer',
+        gutter: '.gutter-sizer',
+        // stagger: 30,
+        percentPosition: true
+      });
+
+      new imagesLoaded(grid).on('progress', function () {
+        // layout Masonry after each image loads
+        msnry.layout();
+      });
+
+      // $('.grid-item').unbind().click( function( e ) {
+      //   $(this).toggleClass('grid-item--gigante');
+      //   msnry.layout();
+      // });
 
     } else {
       console.log( result.data );

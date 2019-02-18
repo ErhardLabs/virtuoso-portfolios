@@ -1,5 +1,6 @@
-$ = jQuery;
 import ajax from './ajax-pagination.es6.js';
+$ = jQuery;
+
 
 $( document ).ready( function() {
 

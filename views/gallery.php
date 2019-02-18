@@ -80,7 +80,6 @@ function virtuoso_portfolio_image_gallery() {
     </div>
     <div class="virtuoso_gallery">
       <div class="gallery_wrap <?php if ($masonryLayout) { echo 'grid'; }?>" data-masonry="<?php echo $masonryLayout ?>">
-	      <?php if ($masonryLayout) { echo '<div class="grid-sizer"></div>'; }?>
         <!--   PORTFOLIOS CALLED THROUGH AJAX     -->
       </div>
     </div> <!-- .gallery_wrap -->

@@ -1,28 +1,61 @@
 .virtuoso_portfolio_image_gallery.masonry {
+
   .gallery_wrap {
-    margin: 0;
+    margin: 0 auto;
 
     /* clear fix */
-    &.grid:after {
-      content: '';
-      display: block;
-      clear: both;
+    &.grid {
+      &::after {
+        content: '';
+        display: block;
+        clear: both;
+      }
     }
 
     /* ---- .grid-item ---- */
 
     .grid-sizer,
     .grid-item {
-      width: 50%;
+
+      @include media-query('sm') {
+        width: 100%;
+      }
+
+      width: 49%;
+    }
+
+    .gutter-sizer {
+      @include media-query('sm') {
+        width: unset;
+      }
+      width: 2%;
+    }
+
+    .grid-item--gigante {
+      width: 100%;
+      z-index: 2; /* above other items */
     }
 
     .grid-item {
       float: left;
-    }
+      border: 2px solid #f3f3f3;
+      border-radius: 4px;
+      margin-bottom: 20px;
 
-    .grid-item img {
-      display: block;
-      max-width: 100%;
+      img {
+        display: block;
+        width: 100%;
+        border-radius: 4px;
+      }
+
+      .grid-item-content {
+        display: flex;
+        align-items: center;
+        height: 85px;
+        span {
+          padding-left: 20px;
+        }
+      }
     }
   }
 
