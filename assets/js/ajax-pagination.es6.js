@@ -113,10 +113,10 @@ function fetchPortfolioGalleryItems() {
         msnry.layout();
       });
 
-      // $('.grid-item').unbind().click( function( e ) {
-      //   $(this).toggleClass('grid-item--gigante');
-      //   msnry.layout();
-      // });
+      $('.grid-item').unbind().click( function( e ) {
+        $(this).toggleClass('grid-item--gigante');
+        msnry.layout();
+      });
 
     } else {
       console.log( result.data );

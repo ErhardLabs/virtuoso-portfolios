@@ -41,6 +41,30 @@
       border: 2px solid #f3f3f3;
       border-radius: 4px;
       margin-bottom: 20px;
+      position: relative;
+
+      &::after {
+        position: absolute;
+        font-family: 'Themify';
+        content: '\e659';
+        opacity: 0;
+        transition: opacity 200ms ease-in-out;
+        right: 0;
+        top: 0;
+        color: white;
+        padding: 15px;
+      }
+
+      &:hover {
+        cursor: pointer;
+        transition: transform 100ms ease-in-out;
+
+        &::after {
+          opacity: 1;
+          transition: opacity 200ms ease-in-out;
+        }
+
+      }
 
       img {
         display: block;
