@@ -2,9 +2,15 @@
 
 function virtuoso_portfolio_image_gallery() {
 
+  // VIRTUOSO PORTFOLIO OPTIONS
+  $pluralCPTName = get_option('virtuoso_portfolio_cpt_name_plural');
+  $cptSlug = strtolower($pluralCPTName);
+  $taxonomyNamePlural = get_option('virtuoso_portfolio_taxonomy_name_plural');
+  $taxonomySlug = strtolower($taxonomyNamePlural);
+
   // GET CUSTOM TAXONOMIES
   $styles = get_terms( array(
-      'taxonomy' => 'style',
+      'taxonomy' => $taxonomySlug,
       'hide_empty' => false,  ) );
 
   $options = get_field('options');
@@ -14,7 +20,7 @@ function virtuoso_portfolio_image_gallery() {
     $masonryLayout = ($options['masonry_layout']) ? 1 : 0;
     $showAllCategorySelector = $options['show_all_category_selector'];
   } else {
-    $title = 'Portfolio';
+    $title = $pluralCPTName;
     $reverseStylesDisplay = false;
     $masonryLayout = 0;
     $showAllCategorySelector = true;
@@ -36,11 +42,11 @@ function virtuoso_portfolio_image_gallery() {
     foreach( $styles as $style ) {
 
       $portfolio = get_posts(array(
-          'post_type' => 'portfolio',
+          'post_type' => $cptSlug,
           'numberposts' => -1,
           'tax_query' => array(
               array(
-                  'taxonomy' => 'style',
+                  'taxonomy' => $taxonomySlug,
                   'field' => 'slug',
                   'terms' => $style->slug
               )

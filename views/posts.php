@@ -9,6 +9,12 @@ function virtuoso_portfolio_display_posts() {
   $taxonomy = ($_POST['taxonomy'] !== null) ? $_POST['taxonomy'] : ''; // for single term pagination
   $numberOfPosts = (count($_POST) > 0) ? (int) $_POST['numberOfPosts'] : 6; // default number of posts or grab from ajax
 
+  // VIRTUOSO PORTFOLIO OPTIONS
+  $pluralCPTName = get_option('virtuoso_portfolio_cpt_name_plural');
+  $cptSlug = strtolower($pluralCPTName);
+  $taxonomyNamePlural = get_option('virtuoso_portfolio_taxonomy_name_plural');
+  $taxonomySlug = strtolower($taxonomyNamePlural);
+
   if ($taxonomy !== '') {
 
     // single term
@@ -17,7 +23,7 @@ function virtuoso_portfolio_display_posts() {
   } else {
 
     $styles = get_terms( array(
-        'taxonomy' => 'style',
+        'taxonomy' => $taxonomySlug,
         'hide_empty' => false,  ) );
 
     $taxonomies = array();
@@ -30,7 +36,7 @@ function virtuoso_portfolio_display_posts() {
 
   // WP_Query arguments
   $args = array(
-    'post_type'       => array( 'portfolio' ),
+    'post_type'       => array( $cptSlug ),
     'post_status'     => array( 'publish' ),
     'orderby'         => 'post_date',
     'order'           => 'DESC',
@@ -39,7 +45,7 @@ function virtuoso_portfolio_display_posts() {
 //    'offset'          => $offset,
     'tax_query' => array(
         array(
-            'taxonomy' => 'style',
+            'taxonomy' => $taxonomySlug,
             'field' => 'slug',
             'terms' => $taxonomies
         )
@@ -58,7 +64,7 @@ function virtuoso_portfolio_display_posts() {
 
         if ( $image_attributes ) {
 
-          $taxonomies = get_the_terms( get_the_ID(), 'style' );
+          $taxonomies = get_the_terms( get_the_ID(), $taxonomySlug );
 
           ?>
           <li data-taxonomy-slug="<?php echo $taxonomies[0]->slug?>">
