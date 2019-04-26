@@ -19,6 +19,7 @@ function virtuoso_portfolio_image_gallery() {
     $reverseStylesDisplay = $options['reverse_stylescategories_display'];
     $masonryLayout = ($options['masonry_layout']) ? 1 : 0;
     $showAllCategorySelector = $options['show_all_category_selector'];
+    $showAllCategorySelectorText = $options['show_all_category_selector_text'];
   } else {
     $title = $pluralCPTName;
     $reverseStylesDisplay = false;
@@ -67,7 +68,7 @@ function virtuoso_portfolio_image_gallery() {
         <?php
         if ($reverseStylesDisplay) {
           if ($showAllCategorySelector) {
-            ?><a class="active" href="#/" data-taxonomy-slug="">All</a><?php
+            ?><a class="active" href="#/" data-taxonomy-slug=""><?php echo $showAllCategorySelectorText; ?></a><?php
           }
           foreach ($styles as $style) {
             echo "<a href='#/' data-taxonomy-slug='".$style->slug."' data-id='".$style->attached_portfolio_id."'>" . $style->name . "</a>";
@@ -77,7 +78,7 @@ function virtuoso_portfolio_image_gallery() {
             echo "<a href='#/' data-taxonomy-slug='".$style->slug."' data-id='".$style->attached_portfolio_id."'>" . $style->name . "</a>";
           }
           if ($showAllCategorySelector) {
-            ?><a class="active" href="#/" data-taxonomy-slug="">All</a><?php
+            ?><a class="active" href="#/" data-taxonomy-slug=""><?php echo $showAllCategorySelectorText; ?></a><?php
           }
         }
         ?>
@@ -85,7 +86,7 @@ function virtuoso_portfolio_image_gallery() {
       </div>
     </div>
     <div class="virtuoso_gallery">
-      <div class="gallery_wrap <?php if ($masonryLayout) { echo 'grid'; }?>" data-masonry="<?php echo $masonryLayout ?>">
+      <div class="gallery_wrap <?php if ($masonryLayout) { echo 'grid'; }?>" data-masonry-layout="<?php echo $masonryLayout ?>">
         <!--   PORTFOLIOS CALLED THROUGH AJAX     -->
       </div>
     </div> <!-- .gallery_wrap -->
