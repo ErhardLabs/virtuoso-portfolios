@@ -17,14 +17,14 @@
       a {
 
         @include media-query('sm') {
-          font-size: 12px;
+          font-size: 22px;
         }
 
         &:first-child {
           margin-right: 8px;
 
           @include media-query('med') {
-            margin-right: 25px;
+            margin-right: 2rem;
           }
         }
 
@@ -136,7 +136,7 @@
   .show_more {
     display: none;
     a {
-      width: 100px;
+      width: 115px;
       margin: 80px auto 0 auto;
       display: flex;
       flex-direction: column;
@@ -145,6 +145,7 @@
       font-style: italic;
       font-weight: bold;
       cursor: pointer;
+      font-size: 2rem;
     }
     .icon {
       margin-top: 10px;
