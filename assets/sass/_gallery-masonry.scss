@@ -42,6 +42,13 @@
       border-radius: 4px;
       margin-bottom: 20px;
       position: relative;
+			opacity: 0;
+			transition: opacity 500ms ease-in-out;
+
+			&.animate {
+				transition: opacity 1500ms ease-in-out;
+				opacity: 1;
+			}
 
       &::after {
         position: absolute;
