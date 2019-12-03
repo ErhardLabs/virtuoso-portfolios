@@ -1,5 +1,5 @@
-import Masonry from "masonry-layout";
-import imagesLoaded from "imagesloaded";
+// import Masonry from "masonry-layout";
+// import imagesLoaded from "imagesloaded";
 
 $ = jQuery;
 
@@ -8,9 +8,9 @@ $ = jQuery;
 $( document ).ready( function() {
 
   $( '.category_selector .categories a' ).first().addClass( 'active' );
-  let masonryLayout = parseInt( $( '.virtuoso_gallery .gallery_wrap' ).attr( 'data-masonry' ) );
+  let masonryLayout = parseInt( $( '.virtuoso_gallery .gallery_wrap' ).attr( 'data-masonry-layout' ) );
 
-  if ( masonryLayout ) {
+  if ( 1 === masonryLayout ) {
     fetchPortfolioGalleryItems();
   } else {
     fetchPortfolioItems();
