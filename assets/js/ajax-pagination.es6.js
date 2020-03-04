@@ -1,5 +1,5 @@
-// import Masonry from "masonry-layout";
-// import imagesLoaded from "imagesloaded";
+import Masonry from "masonry-layout";
+import imagesLoaded from "imagesloaded";
 
 $ = jQuery;
 
@@ -104,12 +104,21 @@ function fetchPortfolioGalleryItems() {
         itemSelector: '.grid-item',
         columnWidth: '.grid-sizer',
         gutter: '.gutter-sizer',
+        isInitLayout: false,
         // stagger: 30,
-        percentPosition: true
+        percentPosition: true,
+        isAnimated: true,
+        animationOptions: {
+          duration: 750,
+          easing: 'linear',
+          queue: false
+        }
       });
 
-      new imagesLoaded(grid).on('progress', function () {
-        // layout Masonry after each image loads
+      new imagesLoaded(grid).on('progress', function() {
+        // layout Masonry after each image loads.
+        $( '.grid-item' ).addClass( 'animate' );
+        msnry._isLayoutInited = true;
         msnry.layout();
       });
 
